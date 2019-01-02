@@ -1,0 +1,22 @@
+.header-content{
+    display: block;
+}
+.left-content{
+    float: left;
+    display: inline-block;
+    width: 20%;
+    height: 100vh;
+    background-color: #f1f4ff;
+}
+.card-body {
+    background-color: #f1f4ff;
+    font-weight: bold;
+}
+.main-content{
+    width: 70%;
+    float: left;
+    display: block;
+}
+.active{
+    background-color:rgba(209,212,223,0.96);
+}
