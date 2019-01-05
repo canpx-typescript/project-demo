@@ -24,7 +24,7 @@ class CateRequest extends FormRequest
     public function rules()
     {
         return [
-            'txtCateName' => 'required|unique:cates,name'
+            'txtCateName' => 'required'
         ];
     }
     public function messages()

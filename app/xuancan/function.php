@@ -17,13 +17,19 @@ function convert_vi_to_en($str) {
     //$str = str_replace(" ", "-", str_replace("&*#39;","",$str));
     return $str;
 }
-function generate_parent_menu($datas,$parent=0,$str='--'){
+function generate_parent_menu($datas,$parent=0,$str='--',$select=0){
     foreach ($datas as $d){
         $name = $d['name'];
         $id = $d['id'];
         if ($d['parent_id'] == $parent){
-            echo "<option>$str $name</option>";
-            generate_parent_menu($datas,$id,$str.'--');
+            if($select != 0 && $id == $select){
+                echo "<option value='$id' selected='selected' >$str $name</option>";  
+            }else{
+                // die;
+             echo "<option value='$id'>$str $name</option>";   
+            }
+        
+            generate_parent_menu($datas,$id,$str.'--',$select);
         }
     }
 }

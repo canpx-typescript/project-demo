@@ -4,9 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('public/admin/bootstrap4/css/bootstrap.css') }}" />
     <link rel="stylesheet" href="{{ asset('public/admin/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/lib/package/dist/sweetalert2.min.css')}}">
     <script src="{{ asset('public/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('public/lib/package/dist/sweetalert2.all.js') }}"></script>
     <script src="{{ asset('public/admin/bootstrap4/js/bootstrap.js') }}"></script>
     <script src="{{ asset('public/js/script.js') }}"></script>
+    <!-- Ckeditor !-->
+    <script src="{{ asset('public/ckeditor/ckeditor.js') }}"></script>
 </head>
 <body>
 <?php
@@ -27,7 +31,6 @@ $request = response()->getMethodCurrent();
     </div>
     <div class="left-content">
         <div id="accordion">
-            @can('isAdmin')
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0">
@@ -45,8 +48,6 @@ $request = response()->getMethodCurrent();
                         </div>
                     </div>
                 </div>
-            @endcan
-            @can('isEditorOrAdmin')
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0">
@@ -64,7 +65,6 @@ $request = response()->getMethodCurrent();
                         </div>
                     </div>
                 </div>
-            @endcan
             <div class="card">
                 <div class="card-header">
                     <h5 class="mb-0">
@@ -79,6 +79,23 @@ $request = response()->getMethodCurrent();
                     </div>
                     <div class="card-body">
                         Danh sách ảnh
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapseThree">
+                            Quản lý Product
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapse4" class="collapse <?php if($request['controller'] == 'ProductController') echo 'show'; else echo '' ?>" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body <?php if($request['action'] == 'getAdd' && $request['controller'] == 'ProductController') echo 'active'; else echo '' ?>">
+                    <a href="<?php echo URL::to('admin/product/add'); ?>" >Thêm Product </a>
+                    </div>
+                    <div class="card-body <?php if($request['action'] == 'getList' && $request['controller'] == 'ProductController') echo 'active'; else echo '' ?>">
+                    <a href="<?php echo URL::to('admin/product/list'); ?>" > Danh sách Product</a>
                     </div>
                 </div>
             </div>
@@ -102,4 +119,5 @@ $request = response()->getMethodCurrent();
 </div>
 
 </body>
+@yield('script-ck')
 </html>
